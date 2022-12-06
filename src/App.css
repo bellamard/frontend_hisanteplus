@@ -6,6 +6,145 @@
   height: 40vmin;
   pointer-events: none;
 }
+.logo {
+  height: 90px;
+  width: 120px;
+  justify-content: center;
+}
+.header{
+  position:fixed;
+  top:0px;
+  width: 100%;
+  display: flex;
+  height: 100px;
+  background-color: #0099ff;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+}
+.title{
+  display: flex;
+  flex-direction: column;
+}
+
+.formLogin{
+
+  width: 30%;
+  border-left:#61dafb 1px solid;
+  padding: 1em;
+}
+.formSignin{
+
+  width: 70%;
+  border-left:#61dafb 1px solid;
+  padding: 1em;
+}
+
+.formSign{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  border-left:#61dafb 1px solid;
+  padding: 1em;
+}
+
+label{
+  font-weight: 600
+}
+.panelLogin{
+  display: flex;
+  justify-content:space-evenly;
+  border:#61dafb 1px solid;
+  margin: 8em;
+  border-radius: 5px;
+  padding: 2em;
+  background: #ffffff81 ;
+  
+}
+.title{
+  color:#0099ff;
+  font-weight: bold;
+}
+.title2{
+  color:#0099ff;
+  font-size: 5em;
+  font-weight: bold;
+}
+.list{
+  display: flex;
+  justify-content: space-around;
+  
+}
+li{  
+  list-style: none;  
+  margin: 0.2em;
+}
+.link{
+  padding: 0.8em;
+  text-decoration: none;
+  color: White;  
+  background:#8383832c;
+  border: 1px solid white;
+  border-radius: 4px;
+  transition: all 1s ease-in-out;
+}
+
+.link:hover{
+  background-color:#001133;
+  color:#0099ff;
+  border-color:#0099ff;;
+}
+.link:active{
+  background-color:#001642;
+  color:#ffffff;
+}
+.navbar{  
+
+  padding: 1em;
+}
+.panelmessage{
+  padding: 1em;
+  width: 70%;
+  text-align: justify;
+}
+.panelBody{
+  height: 100%;
+}
+.footer{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color:#282c34;
+  padding: 1em;
+  bottom: 0%;
+}
+.panelFooter{
+  width: 30%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.panellogo{
+  width: 30%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  padding: 1em;
+}
+
+.titleFooter{
+  color:white
+}
+.address{
+  color: white;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

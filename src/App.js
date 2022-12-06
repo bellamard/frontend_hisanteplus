@@ -1,19 +1,23 @@
 import logo from './logo.svg';
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Login from "./pages/login";
+import Registre from "./pages/registre";
 import NotFound from "./pages/notFound";
 import './App.css';
+import Footer from './components/footer';
 
-function App() {
+const App = () => {
   return (
 
     <main>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} exact />
+          <Route path="/signin" element={<Registre />} exact />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
+      <Footer />
     </main>
     // <div className="App">
     //   <header className="App-header">

@@ -63,6 +63,24 @@ label{
   background: #ffffff81 ;
   
 }
+.panelnofound{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  border:#61dafb 1px solid;
+  margin: 8em;
+  border-radius: 5px;
+  padding: 2em;
+  background: #ffffff81 ;
+  
+}
+.messageNofound{
+  color:#001642;
+  font-weight:600;
+  font-size: 2em;
+
+}
 .title{
   color:#0099ff;
   font-weight: bold;

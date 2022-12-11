@@ -7,8 +7,9 @@ function Header(props) {
     return (
         <div className='header'>
             <div className='title'>
-                <img src={logo} className="logo" alt='hi-sante' />
-
+                <Link to='/'>
+                    <img src={logo} className="logo" alt='hi-sante' />
+                </Link>
             </div>
             <div className='navbar'>
                 <ul className='list'>

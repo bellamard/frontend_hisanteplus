@@ -1,0 +1,299 @@
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamBold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamLight.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamThin.otf');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamMedium.ttf');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamBook.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamXLight.otf');
+    font-weight: 100;
+}
+@font-face {
+    font-family: 'SEGA';
+    src: url('../../fonts/gotham/GothamBlack.otf');
+    font-weight: 900;
+}
+.container{
+    width: 100%;
+    background-color: blue;
+}
+.containerHeader{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #f3f3f3;
+    padding: 0.4em;
+    border-radius: 0.4em;
+    
+    .containerLogin{
+        display: flex;
+        padding: 0.5em;
+        background-color: #ffffff;
+        border-radius: 0.5em;
+        justify-content: space-around;
+        align-items: center;
+        border: 0.3px solid #5a248369;
+        .boxSearch{
+            width: 100%;            
+            
+            i{
+                position: absolute;
+                margin-left: 0.5em;
+                margin-top: 4px;
+                color: #bdbdbd;
+            } 
+            input{
+                width: 400px;
+                padding-left: 2em;
+                padding-bottom: 4px;
+                padding-top: 4px;
+                border: 0.4px solid #5a248363;
+                border-radius: 20px;
+                background-color: transparent;
+                font-family: 'gotham';
+                font-weight: 900;
+                transition: border 1s step-end;
+                &:focus{
+                    outline: none;
+                    color: #1e1d3d;
+                    border: 0.8px solid #1e1d3d54;
+                    
+                }
+                &:hover{
+                    border: 0.4px solid #1e1d3d54;
+                }  
+                      
+                
+               
+            }
+              
+
+        }
+        .boxControl{
+            padding: 5px;
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            flex-wrap: nowrap;
+            align-items: center;
+            font-size: 24px; 
+            
+            .logoUser{
+                text-decoration: none;
+                margin-left: 1em;
+                background-color: white;
+                border: #1e1d3d solid 1px;
+                border-radius: 50%;                
+                padding: 2px;
+                padding-left: 7px;
+                padding-right:7px;
+                transition: all 1s linear;
+                align-items: center;
+                
+                i{
+                    color: #1e1d3d;
+                    transition: all 1s linear;
+                }
+                &:hover{
+                    border-color: #ea5353;
+                    i{
+                        color: #ea5353;
+                        
+                    }
+                }
+            }
+            .boxManager{
+                display: flex;
+                flex-wrap: nowrap;
+                padding-right: 1rem;
+                border-right: #1e1d3d solid 0.4px;
+                  
+                i{
+                        color: #1e1d3d;
+                        text-decoration: none;
+                        margin-left: 1em;
+                        
+                } 
+                
+                &:hover{
+                    border-color: #5a2483;
+                    i{
+                        &:hover{
+                            color: #5a2483;
+                        }
+                    }
+                }
+            }
+
+
+        }        
+            
+        
+    }
+    .containerWelcome{
+        padding: 0.65em;
+        h3{
+            font-weight: 900;
+            color: #f6bb18;
+        }
+        span{
+            font-weight: 100;
+        }
+        br{
+            line-height: 0.4px;
+        }
+    }
+    
+}
+.containerPannel{
+    background: #e9e9e9; 
+    display: flex;
+    .layout{
+        width: 100%;
+        padding: 1em;
+    }
+    hr{
+            line-height: 0.4px;
+            padding-bottom: 5px;
+        }
+    .boxCard{
+        padding: 1em;
+        display: flex;
+        justify-content: space-between;
+        .card{
+           
+            box-shadow: 0px 2px 5px #1c1a19;
+            color: #bdbdbd;
+            padding: 1em;
+            display: flex;
+            width: 100%;
+            margin: 0.5em;
+            .cardTitles{
+                padding-bottom:30px ;
+                font-size: 32px;
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                color: white;
+            }
+            .cardSubtitle{
+                text-align: end;
+                color: white;
+            }
+        }
+
+        .cardColor{
+             background: linear-gradient(to bottom,#1e1d3d 0%, #5a2483);
+
+        }
+        .cardColorWhite{
+             background: linear-gradient(to bottom, #ea5353 0%, #ff9a9a );
+
+        }
+        .cardColorPurple{
+             background: linear-gradient(to bottom, #5a2483 0% ,#cb95f5);
+
+        }
+    }
+}
+.containerCharts{
+    background: #f3f3f3;
+    width: 100%;
+    padding: 1em;
+    border-radius: 0.4em;
+    h3{
+        font-weight: 300;
+    }
+    hr{
+        line-height: 0.4px;
+    }
+    .boxCharts{
+        display: flex;
+        width: 100%;
+        .chart{
+            width: 100%;
+            margin: 0.5em;
+            padding: 1em;
+            border-radius: 5px;
+            border: 0.4px solid;
+        }
+    }
+    
+
+}
+.menu{
+    width: 25%;
+    background: #1e1d3d;
+    
+    .boxLogo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0.2em;
+        color: #cb95f5;
+        background: #5a2483;
+        border-bottom: #e9e9e9 0.4px solid;
+    }
+    .boxLinks{
+        padding-top: 1em;
+        padding-bottom: 2em;
+        ul{
+            list-style: none;
+            color: #f3f3f3;
+            padding-left: 0;
+            padding-right: 0.5em;
+            li{           
+                
+                width: 100%;
+                margin-top: 1em;
+                .Links{
+                    display: flex;
+                    align-items: center;                   
+                    text-decoration: none;
+                    margin: 10px;
+                    color: #cb95f5;
+                    border: #cb95f5 1px solid;
+                    i{
+                        padding: 0.5em;
+                        text-decoration: none;
+                        background: #cb95f5;
+                        color: #1e1d3d;
+                        border-radius: 0.2em;
+                        margin-right: 10px;
+                        border-bottom: #cb95f5 1px solid;
+                    }
+                    &:hover{
+                        color: #cb95f5;
+                        border: #cb95f5 1px solid;
+
+                    }
+                }
+                
+                
+                
+            }
+        }
+    }
+}

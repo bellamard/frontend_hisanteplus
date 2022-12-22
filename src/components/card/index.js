@@ -1,13 +1,15 @@
 import React from 'react';
 
 
-const Card = ({ numberTotal, numberValide, icons }) => {
+const Card = ({ title, numberTotal, numberValide, icons, card }) => {
     return (
-        <div>
-            <div>
+        <div className={card}>
+            <div className='cardTitles'>
+                <h4>{title}</h4>
                 <i className={icons}>{numberTotal}</i>
+
             </div>
-            <div>
+            <div className='cardSubtitle'>
                 <h3>{numberValide}/ {numberTotal}</h3>
             </div>
         </div >

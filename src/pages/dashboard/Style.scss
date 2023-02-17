@@ -1,36 +1,36 @@
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamBold.ttf');
     font-weight: bold;
 }
 
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamLight.ttf');
     font-weight: 300;
 }
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamThin.otf');
     font-weight: 200;
 }
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamMedium.ttf');
     font-weight: normal;
 }
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamBook.ttf');
     font-weight: 300;
 }
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamXLight.otf');
     font-weight: 100;
 }
 @font-face {
-    font-family: 'SEGA';
+    font-family: 'gotham';
     src: url('../../fonts/gotham/GothamBlack.otf');
     font-weight: 900;
 }
@@ -64,7 +64,6 @@
                 color: #bdbdbd;
             } 
             input{
-                width: 400px;
                 padding-left: 2em;
                 padding-bottom: 4px;
                 padding-top: 4px;
@@ -72,7 +71,7 @@
                 border-radius: 20px;
                 background-color: transparent;
                 font-family: 'gotham';
-                font-weight: 900;
+                font-weight: normal;
                 transition: border 1s step-end;
                 &:focus{
                     outline: none;
@@ -113,7 +112,6 @@
                 
                 i{
                     color: #1e1d3d;
-                    transition: all 1s linear;
                 }
                 &:hover{
                     border-color: #ea5353;
@@ -189,9 +187,10 @@
             display: flex;
             width: 100%;
             margin: 0.5em;
+            font-family: 'gotham';
             .cardTitles{
                 padding-bottom:30px ;
-                font-size: 32px;
+                font-size: 2.8em;
                 display: flex;
                 align-items: flex-end;
                 justify-content: space-between;
@@ -215,6 +214,14 @@
              background: linear-gradient(to bottom, #5a2483 0% ,#cb95f5);
 
         }
+        .cardColorbluesky{
+             background: linear-gradient(to bottom, #00b7ff 0% ,#006188);
+
+        }
+        .cardColorgreen{
+             background: linear-gradient(to bottom, #5fff20 0% ,#41971f);
+
+        }
     }
 }
 .containerCharts{
@@ -224,6 +231,8 @@
     border-radius: 0.4em;
     h3{
         font-weight: 300;
+        font-family: 'gotham';
+        
     }
     hr{
         line-height: 0.4px;
@@ -250,6 +259,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        font-family: 'gotham';
         align-items: center;
         padding: 0.2em;
         color: #cb95f5;
@@ -272,28 +282,167 @@
                     display: flex;
                     align-items: center;                   
                     text-decoration: none;
+                    font-family: 'gotham';
                     margin: 10px;
                     color: #cb95f5;
                     border: #cb95f5 1px solid;
+                    border-radius: 0.2em;
+                    transition: all 0.3s ease-out;
                     i{
                         padding: 0.5em;
                         text-decoration: none;
                         background: #cb95f5;
                         color: #1e1d3d;
-                        border-radius: 0.2em;
                         margin-right: 10px;
                         border-bottom: #cb95f5 1px solid;
                     }
                     &:hover{
-                        color: #cb95f5;
-                        border: #cb95f5 1px solid;
+                        color: #e9e9e9;
+                        border-color: #e9e9e9;
+                        background: #e9e9e96e; 
+                        i{
+                           
+                            border-color: #e9e9e9;
+                            background: #e9e9e9; 
+                        }
 
                     }
                 }
+                .active{
+                        color: #ea5353;
+                        border-color: #ea5353;
+                        background: #e9e9e936; 
+                        font-family: 'gotham';
+                        i{
+                           
+                            border-color: #ea5353;
+                            background: #ea5353; 
+                        }
+
+                    }
                 
                 
                 
             }
+        }
+    }
+}
+.boxItem{
+    border-radius: 5px;
+    border-bottom: solid 0.3px #5a24833f;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 8px;
+    width: 100%;
+    .Iteminfos{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .imgUser{
+            width: 60px;
+            height: 60px;
+            pointer-events: none;
+            border-right: #1e1d3d solid 1px;
+            border-radius: 50%; 
+          }
+        .ItemTitle{
+            margin-left: 8px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            h3{
+                text-decoration: none;
+                color: #006188;
+                font-size: 1.8em;
+                font-weight: bolder;
+                margin: 0;
+                
+                              
+            }
+            span{
+                font-size: 0.9em;
+                font-weight: lighter; 
+                text-decoration: none;
+            }
+        }
+    }
+    
+}
+.LinkItem{
+    text-decoration: none;
+    transition: all 1s cubic-bezier();
+    width: 100%;
+    &:hover{
+        color: #00b7ff;
+        .boxItem{
+            background-color: #00618817;
+            position: relative;
+            top: -5px;
+            left: -5px;
+        }
+    }
+
+}
+.boxPatientprofil{
+    
+    padding: 8px;
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 100%;
+    .btn{
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+}
+.boxBlood{
+    border-right: 0.5px solid #1e1d3d;
+    padding: 8px;
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    h4{
+        
+        font-size: 0.9em;
+        font-weight: lighter;
+        }
+}
+.boxPatientImage{
+    border-right: 0.5px solid #1e1d3d;
+    padding: 8px;
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .imgUser{
+        width: 180px;
+        height: 180px;
+        border: 0.8px solid #5a2483;
+        border-radius: 50%;
+    }
+    h3{
+        font-size: 1em;
+        text-align: center;
+    }
+   
+    .viewInfos{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         
+        h4{
+        text-align: center;
+        font-size: 0.8em;
+        font-weight: lighter;
         }
     }
 }

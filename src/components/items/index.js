@@ -1,19 +1,21 @@
 import React from 'react';
+import logo from '../../logo.svg';
 
-const item = ({ title, subtitle, etat, myImage }) => {
+const Item = ({ title, subtitle, etat, myImage }) => {
     return (
-        <div>
-            <div>
-                <image src={myImage} />
+        <div className='boxItem'>
+            <div className='Iteminfos'>
+                <img src={logo} className="imgUser" alt={title} />
+                <div className='ItemTitle'>
+                    <h3>
+                        {title}
+                    </h3>
+                    <span>
+                        {subtitle}
+                    </span>
+                </div>
             </div>
-            <div>
-                <h3>
-                    {title}
-                </h3>
-                <span>
-                    {subtitle}
-                </span>
-            </div>
+
             <div>
                 {etat}
             </div>
@@ -24,4 +26,4 @@ const item = ({ title, subtitle, etat, myImage }) => {
     );
 };
 
-export default item;
+export default Item;

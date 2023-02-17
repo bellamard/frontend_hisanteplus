@@ -4,7 +4,9 @@ import Login from "./pages/login";
 import Registre from "./pages/registre";
 import NotFound from "./pages/notFound";
 import Dashboard from './pages/dashboard';
-import Meeting from './pages/dashboard/home'
+import Meets from './pages/dashboard/meets'
+import Patients from './pages/dashboard/patients';
+import Patient from './pages/dashboard/patients/patient';
 import './App.css';
 import Footer from './components/footer';
 
@@ -17,7 +19,9 @@ const App = () => {
           <Route path="/" element={<Login />} exact />
           <Route path="/signin" element={<Registre />} />
           <Route path="/dashboard" element={<Dashboard />} exact />
-          <Route path="dashboard/meeting" element={<Meeting />} />
+          <Route path="/dashboard/meets" element={<Meets />} />
+          <Route path="/dashboard/patients" element={<Patients />} exact />
+          <Route path="/dashboard/patients/:id" element={<Patient />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

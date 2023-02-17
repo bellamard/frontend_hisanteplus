@@ -31,7 +31,7 @@ const Dashboard = () => {
 
     return (
         <div className='containerPannel'>
-            <Options />
+            <Options activePatient='Links' activeMeet='Links' activeSick='Links' />
             <div className='layout'>
                 <HeaderDash userName={userName} />
                 <Pannel patientTotal={patientTotal} patientValide={patientValide} meetTotal={meetTotal} meetValider={meetValider} sickTotal={sickTotal} sickValider={sickValider} />

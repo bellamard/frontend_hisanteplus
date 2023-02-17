@@ -4,31 +4,33 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link, NavLink, useHistory } from "react-router-dom";
 import logo from '../../logo.svg'
 
-const Options = () => {
+const Options = ({ activePatient, activeMeet, activeSick }) => {
     return (
         <div className='menu'>
             <div className='boxLogo'>
-                <img src={logo} className="logo" alt='hi-sante' />
-                <span>Hi Sante</span>
+                <Link to="/dashboard">
+                    <img src={logo} className="logo" alt='hi-sante' />
+                    {/* <span>Hi Sante</span> */}
+                </Link>
             </div>
             <div className='boxLinks'>
                 <ul>
                     <li>
-                        <Link to="/" className='Links'>
+                        <Link to="/dashboard/patients" className={activePatient}>
                             <i className='bi bi-person-fill'></i>
                             Patients
                         </Link>
 
                     </li>
                     <li>
-                        <Link to="/" className='Links'>
+                        <Link to="/dashboard/meets" className={activeMeet}>
                             <i className='bi bi-calendar-date-fill'></i>
                             Rendez-Vous
                         </Link>
 
                     </li>
                     <li>
-                        <Link to="/" className='Links'>
+                        <Link to="/" className={activeSick}>
                             <i className='bi bi-virus'></i>
                             Malades
                         </Link>
@@ -38,7 +40,7 @@ const Options = () => {
 
             </div>
 
-        </div>
+        </div >
     );
 };
 

@@ -30,9 +30,10 @@ const Dashboard = () => {
     const [indMeetStat, setIndMeetStat] = useState([]);
     const [indPatientStat, setIndPatientStat] = useState([]);
     const history = useNavigate();
+    const baseUrl="https://backend.dbrtransfert.site/";
     useEffect(() => { }, []);
     const getMyProfil = () => {
-        const url = '';
+        const url = baseUrl+'medecins/me';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer' + tokken } })
             .then(res => {
@@ -46,7 +47,7 @@ const Dashboard = () => {
             })
     };
     const getAllPatient = () => {
-        const url = '';
+        const url = baseUrl+'patients/all';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer' + tokken } })
             .then(res => {
@@ -60,7 +61,7 @@ const Dashboard = () => {
             })
     };
     const getAllMeet = () => {
-        const url = '';
+        const url = baseUrl+'consultations';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer' + tokken } })
             .then(res => {

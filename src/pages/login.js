@@ -32,7 +32,7 @@ const Login = () => {
             setUsername('');
             return setError("Numero d'ordre est incorrect!!!");
         }
-        const url = "http://localhost:5000/medecins/login";
+        const url = "https://backend.dbrtransfert.site/medecins/login";
 
         
         
@@ -104,7 +104,7 @@ const Login = () => {
         return (
             <div className='boxLoad'>
                 <>
-                    <i className='bi bi-arrow-clockwise loading'></i>
+                    <div className="loader"></div>
                     <h3>Chargement...</h3>
                 </>
             </div>

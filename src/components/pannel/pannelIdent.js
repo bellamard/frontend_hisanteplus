@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../logo.svg';
+import logo from '../../logo.png';
 import Rdv from '../../components/modal/modalRdv';
 
 const PannelIdent = ({ patient }) => {

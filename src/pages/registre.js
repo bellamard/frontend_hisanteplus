@@ -20,10 +20,14 @@ const Registre = (props) => {
     const [title, setTitle] = useState('');
     const [titleButton, setTitleButton] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const history = useNavigate();
-    const sendIdentificaion = () => {
+    const [load, setLoad] = useState(false);
 
-        const url = "http://localhost:5000/medecins/registre";
+    const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
+    const history = useNavigate();
+    
+    const sendIdentificaion = () => {
+        setLoad(!load);
+        const url = "https://backend.dbrtransfert.site/medecins/registre";
 
         axios.post(url, { nom_medecin: name, phone_medecin: phone, password_medecin: password, num_ordre_medecin: numberOrdre, specialisation_medecin: specialisation, mail_medecin: mail })
             .then(res => {
@@ -34,6 +38,17 @@ const Registre = (props) => {
             });
 
     };
+
+    const Loading = () => {
+        return (
+            <div className='boxLoad'>
+                <>
+                    <div className="loader"></div>
+                    <h3>Chargement...</h3>
+                </>
+            </div>
+        );
+    }
 
     const checkidentification = () => {
         if (numberPage === 0) {
@@ -47,10 +62,10 @@ const Registre = (props) => {
 
         }
         if (numberPage === 1) {
-            if (password == null || password === '' || password.length <= 8) {
+            if (password == null || password === '' || password.length <= 8 || !PASSWORD_REGEX.test(password)) {
                 return setErrorMessage(`les champs mot de passe n'est pas bien remplir `)
             }
-            if (confirm == null || confirm === '' || confirm.length <= 8) {
+            if (confirm == null || confirm === '' || confirm.length <= 8|| !PASSWORD_REGEX.test(confirm)) {
                 return setErrorMessage(`les champs confirmate n'est pas bien remplir `)
             }
             if (confirm !== password) {
@@ -207,7 +222,8 @@ const Registre = (props) => {
                     <h2 className='title2'>Hi sante</h2>
                     <FormIdent />
                 </div>
-                <Pannel />
+                {load?(<Loading/>):(<Pannel />)}
+                
             </div>
 
 

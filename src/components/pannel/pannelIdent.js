@@ -5,8 +5,12 @@ import Rdv from '../../components/modal/modalRdv';
 const PannelIdent = ({ patient }) => {
     const [showRdv, setShowRdv] = useState(false);
     const { names, age, sex, blood, helecto } = patient;
+    const viewModal = () => {
+        setShowRdv(!showRdv);
+    }
     return (
         <div>
+            <Rdv showRdv={showRdv} setShowRdv={setShowRdv} />
             <div className='boxCard'>
                 <div className='boxPatientImage'>
                     <img src={logo} className="imgUser" alt={names} />
@@ -25,7 +29,7 @@ const PannelIdent = ({ patient }) => {
 
                     <h3>Créer</h3>
 
-                    <button type="button" className="btn btn-outline-info">
+                    <button type="button" className="btn btn-outline-info" onClick={viewModal}>
                         <i className='bi bi-calendar-date-fill'>Rendez-Vous</i>
                     </button>
                     <button type="button" className="btn btn-outline-info">
@@ -35,7 +39,6 @@ const PannelIdent = ({ patient }) => {
                 </div>
             </div>
             <hr />
-            <Rdv showRdv={showRdv} setShowRdv={setShowRdv} />
 
         </div>
     );

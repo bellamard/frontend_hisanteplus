@@ -1,36 +1,117 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import Header from '../components/header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
-const FormLogin = () => {
-    return (
 
 
-        <Form className='formLogin'>
-            <h3 className='title'> se connecter</h3>
-            <FormGroup>
-                <Label>utilisateur</Label>
-                <Input type="text" name="user" id="user" placeholder="Ex. A09000" required />
-            </FormGroup>
-            <FormGroup>
-                <Label>Mot de passe</Label>
-                <Input type="password" name="password" id="" placeholder="********" required />
-            </FormGroup>
-            <FormGroup className='checkboxForm'>
-                <Input type="checkbox" name="connection" id="connexion" />
-                <Label>Reste connecter</Label>
-            </FormGroup>
-            <Button>
-                Valider
-            </Button>
+const Login = () => {
+    const [message, setMessage] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [viewPass, setViewPass] = useState(false);
+    const [icons, setIcons] = useState("bi bi-eye");
+    const [load, setLoad] = useState(false);
 
-        </Form>
-    )
+    useEffect(() => {
+        setMessage('lorem ipsum');
+    }, []);
+    const history = useNavigate();
+    const checkCount = () => {
+        setLoad(!load);
+        if (password.length < 6) {
+            setPassword('');
+            return setError('Mots de passe est incorrect!!!');
+        }
+        if (username.length < 2) {
+            setUsername('');
+            return setError("Numero d'ordre est incorrect!!!");
+        }
+        const url = "http://localhost:5000/medecins/login";
 
-};
+        
+        
+        return axios.post(url, { numberOrdre: username, password }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
 
-const login = (props) => {
+
+        })
+            .then(res => {
+                
+                const { token, id } = res;
+                localStorage.setItem('tokken', token);
+                localStorage.setItem('id', id);
+                history('/dashboard');
+                
+
+            }).catch(error => {             
+              
+                console.log(error) ;         
+                setPassword('');
+                setUsername('');
+                setError("Verifier vos Information!!!");
+                setLoad(false);             
+            });
+    }
+
+    const changeView = () => {
+        setViewPass(!viewPass);
+        viewPass ? setIcons('bi bi-eye') : setIcons('bi bi-eye-slash');
+    }
+
+    const FormLogin = () => {
+        return (
+
+            <Form className='formLogin'>
+                <h3 className='title'> se connecter</h3>
+                <FormGroup>
+                    <Label>Numéro d'ordre</Label>
+                    <div className='boxPassword'>
+                        <Input type="text" value={username} onChange={(event) => setUsername(event.target.value)} placeholder="Ex. A09000" />
+                        <i className='bi bi-person'></i>
+                    </div>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Mot de passe</Label>
+                    <div className='boxPassword'>
+                        <Input type={viewPass ? ("text") : ("password")} value={password} onChange={(event) => setPassword(event.target.value)} placeholder="********" />
+                        <i onClick={changeView} className={icons}></i>
+                    </div>
+                </FormGroup>
+                <FormGroup className='checkboxForm'>
+                    <Input type="checkbox" name="connection" id="connexion" />
+                    <Label>Reste connecter</Label>
+                </FormGroup>
+
+                <Button onClick={checkCount}>
+                    Valider
+                </Button>
+                <div className='boxMessageError'>
+                    {error}
+                </div>
+            </Form >
+        )
+
+    };
+    const Loading = () => {
+        return (
+            <div className='boxLoad'>
+                <>
+                    <i className='bi bi-arrow-clockwise loading'></i>
+                    <h3>Chargement...</h3>
+                </>
+            </div>
+        );
+    }
+
+
     return (
         <div className='panelBody'>
             <Header />
@@ -38,14 +119,11 @@ const login = (props) => {
                 <div className='panelmessage'>
                     <h3 className='title2'>Hi sante</h3>
                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                        {message}
                     </p>
                 </div>
-                <FormLogin />
+                {load ? (<Loading />) : (<FormLogin />)}
+
             </div>
 
 
@@ -53,4 +131,4 @@ const login = (props) => {
     );
 }
 
-export default login;
+export default Login;

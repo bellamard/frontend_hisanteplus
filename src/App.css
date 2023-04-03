@@ -164,13 +164,38 @@ li{
 .address{
   color: white;
 }
-
+.btnEnvoyer{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .loading{
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.boxPassword{
+    display: flex;
+    flex-wrap:nowrap;
+    align-items: center;
+  }
+.boxPassword i{
+  position: relative;
+  right: 20px;
+}
+.boxMessageError{
+position: relative;
+}
 
+.boxLoad{
+  align-items: center;
+  justify-content:center;
+  display: flex;
+  border-left:#61dafb 1px solid;
+  padding: 1em;
+}
+.btnBack{
+  margin-top: 1em;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -186,11 +211,35 @@ li{
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+@keyframes loading {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+@media all and (max-width: 1024px){
+  .panelLogin{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content:space-between; 
+  margin-top: 8em; 
+  margin-left: 2em;
+  margin-right: 2em;
+}
+  
+  .title2{
+    font-size: 3em;
+  }
+  .footer{
+    flex-direction: column-reverse;
+  }
+  .panelFooter, .panellogo, .panelmessage, .formLogin, .formSignin, .formSign{
+    width: 100%;
+  }
+  
+  
+  
+
 }

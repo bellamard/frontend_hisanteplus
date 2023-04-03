@@ -24,7 +24,7 @@ const Footer = () => {
                         Infos@hisante.com
                     </a>
                     <a href='tel:+24389'>
-                        +243 89
+                        +243 89 512 72 36
                     </a>
                 </div>
 
@@ -32,7 +32,7 @@ const Footer = () => {
                     <h3>Newletter</h3>
                     <div>
                         <Input type="email" name="email" id="email" placeholder="Ex. exemple@hisante.com" required />
-                        <Button>envoyer</Button>
+                        <Button className="btnEnvoyer">envoyer</Button>
                     </div>
                 </div>
 

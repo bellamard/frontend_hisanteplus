@@ -6,7 +6,7 @@ const CardDiag = ({ title, numberTotal, numberValide, icons, card }) => {
         <div className={card}>
             <div className='cardTitles'>
                 <h4>{title}</h4>
-                <i className={icons}>{numberTotal}</i>
+                <i className={icons}></i>
             </div>
             <div className='cardSubtitle'>
                 <h3>{numberValide}/ {numberTotal}</h3>

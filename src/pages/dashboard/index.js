@@ -16,7 +16,7 @@ const Dashboard = () => {
     const [meetValider, setMeetValider] = useState(0);
     const [sickTotal, setSickTotal] = useState(0);
     const [sickValider, setSickValider] = useState(0);
-    const [userName, setUserName] = useState('inconnue');
+    const [userName, setUserName] = useState('');
     const [sickTitle, setSickTitle] = useState('');
     const [meetTitle, setMeetTitle] = useState('');
     const [patientTitle, setPatientTitle] = useState('');
@@ -25,55 +25,95 @@ const Dashboard = () => {
     const [indPatientTitle, setIndPatientTitle] = useState('');
     const [sickStat, setSickStat] = useState([]);
     const [meetStat, setMeetStat] = useState([]);
-    const [patientStat, setPatientStat] = useState([1, 2, 3, 6, 7, 8, 10, 11, 4, 9, 5, 12]);
-    const [indSickStat, setIndSickStat] = useState([12, 2, 4, 6, 7, 8, 10, 11, 4, 9, 3, 1]);
+    const [patientStat, setPatientStat] = useState([]);
+    const [indSickStat, setIndSickStat] = useState([]);
     const [indMeetStat, setIndMeetStat] = useState([]);
     const [indPatientStat, setIndPatientStat] = useState([]);
     const history = useNavigate();
     const baseUrl="https://backend.dbrtransfert.site/";
-    useEffect(() => { }, []);
+    useEffect(() => { 
+        setIndMeetStat([5, 6, 4, 12, 7, 6, 0, 1, 4, 9, 3, 1]);
+        setIndSickStat([12, 1, 5, 6, 2, 19, 10, 11, 3, 9, 5, 1]);
+        setPatientStat([1, 2, 3, 6, 7, 8, 10, 11, 4, 9, 5, 6]);
+        setPatientStat([6, 10, 9, 1, 3, 8, 8, 11, 4, 1, 6, 12]);
+        setMeetStat([1, 10, 3, 10, 1, 8, 10, 11, 4, 10, 5, 2]);
+        setIndPatientStat([1, 8, 3, 6, 2, 8, 0, 1, 4, 18, 5, 12]);
+        setSickStat([7, 1, 4, 1, 3, 7, 8, 8, 4, 1, 6, 7]);
+        setPatientValide('*');
+        setMeetValider('*');
+        setSickValider('*');
+        getMyProfil();
+        getAllPatient();
+        getAllMeet();
+        getAllSick();
+        setSickTitle("Interventions");
+        setMeetTitle('RDV');
+        setPatientTitle('Patients');
+        setIndSickTitle("Interventions");
+        setIndMeetTitle("RDV");
+        setIndPatientTitle("Patients");
+    }, []);
+    
     const getMyProfil = () => {
         const url = baseUrl+'medecins/me';
         const tokken = localStorage.getItem('tokken');
-        axios.get(url, { headers: { 'Authorization': 'Bearer' + tokken } })
+        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
-                const { id, nomMedecin, phoneMedecin } = res;
-                setUserName(nomMedecin);
+                const { nomMedecin } = res.data;
+                return setUserName(nomMedecin);
             })
             .catch(err => {
                 console.log(err);
-                history.push('/');
+               return history('/login');
 
-            })
-    };
+            });
+        };    
+        
     const getAllPatient = () => {
         const url = baseUrl+'patients/all';
         const tokken = localStorage.getItem('tokken');
-        axios.get(url, { headers: { 'Authorization': 'Bearer' + tokken } })
+        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
-
-                setPatientTotal(res.length);
+                const patients=res.data;
+                setPatientTotal(patients.length);
             })
             .catch(err => {
                 console.log(err);
-                history.push('/');
+                history('/login');
 
             })
     };
     const getAllMeet = () => {
         const url = baseUrl+'consultations';
         const tokken = localStorage.getItem('tokken');
-        axios.get(url, { headers: { 'Authorization': 'Bearer' + tokken } })
+        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
-
-                setMeetTotal(res.length);
+                const meets=res.data;
+                setMeetTotal(meets.length);
             })
             .catch(err => {
                 console.log(err);
-                history.push('/');
+                history('/login');
 
             });
     };
+    const getAllSick = () => {
+        const tokken = localStorage.getItem('tokken');
+        const id= localStorage.getItem('id');
+        const url = baseUrl+'interventions/';
+        
+        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
+            .then(res => {
+                const Sick=res.data;
+                setSickTotal(Sick.length);
+            })
+            .catch(err => {
+                console.log(err);
+                history('/login');
+
+            });
+    };
+
     return (
         <div className='containerPannel'>
             <Options activePatient='Links' activeMeet='Links' activeSick='Links' />

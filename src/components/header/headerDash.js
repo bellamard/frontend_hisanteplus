@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
-const HeaderDash = ({ userName }) => {
+const HeaderDash = ({ userName, mySearch }) => {
+    const history = useNavigate();
     const [search, setSearch] = useState('');
     const logOut = () => {
-        alert('bye');
-    }
+        localStorage.clear();
+        return history('/login');       
+    };
+    useEffect(() => {},[])
     return (
         <div className="containerHeader">
             <div className="containerLogin">
@@ -19,9 +22,9 @@ const HeaderDash = ({ userName }) => {
                         <Link to='inbox'>
                             <i class="bi bi-inbox-fill"></i>
                         </Link>
-                        <Link onClick={logOut}>
-                            <i class="bi bi-door-open-fill"></i>
-                        </Link>
+                        
+                        <i onClick={logOut} class="bi bi-door-open-fill"></i>
+                        
                     </div>
                     <div className='logoUser'>
                         <Link>

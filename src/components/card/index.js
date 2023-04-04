@@ -1,18 +1,23 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 
-const Card = ({ title, numberTotal, numberValide, icons, card }) => {
+
+
+const Card = ({ title, numberTotal, numberValide, icons, card, link }) => {
     return (
-        <div className={card}>
+        
+        <Link className={card} to={link}>
             <div className='cardTitles'>
                 <h4>{title}</h4>
-                <i className={icons}>{numberTotal}</i>
+                <i className={icons}></i>
 
             </div>
             <div className='cardSubtitle'>
-                <h3>{numberValide}/ {numberTotal}</h3>
+                <h3>{numberValide} / {numberTotal}</h3>
             </div>
-        </div >
+        </Link >
+       
     );
 };
 

@@ -31,7 +31,7 @@ const Registre = (props) => {
 
         axios.post(url, { nom_medecin: name, phone_medecin: phone, password_medecin: password, num_ordre_medecin: numberOrdre, specialisation_medecin: specialisation, mail_medecin: mail })
             .then(res => {
-                history('/');
+                history('/login');
             }).catch(err => {
                 const { error } = err;
                 return setErrorMessage(error);

@@ -19,7 +19,7 @@ const Login = () => {
     const [load, setLoad] = useState(false);
 
     useEffect(() => {
-        setMessage('lorem ipsum');
+        setMessage("La tempérance et le travail sont les meilleurs médecins de l'homme.\n\nLa médecine, c'est ingrat. Quand on se fait honorer par les riches, on a l'air d'un larbin, par les pauvres on a tout du voleur.\n \nLes meilleurs médecins du monde sont : Le Docteur Diète, le Docteur Tranquille et le Docteur Joyeux.");
     }, []);
     const history = useNavigate();
     const checkCount = () => {
@@ -45,9 +45,9 @@ const Login = () => {
         })
             .then(res => {
                 
-                const { token, id } = res;
+                const { token, medecinId} = res.data;
                 localStorage.setItem('tokken', token);
-                localStorage.setItem('id', id);
+                localStorage.setItem('id', medecinId);
                 history('/dashboard');
                 
 

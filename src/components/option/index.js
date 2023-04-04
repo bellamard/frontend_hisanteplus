@@ -32,7 +32,7 @@ const Options = ({ activePatient, activeMeet, activeSick }) => {
                     <li>
                         <Link to="/" className={activeSick}>
                             <i className='bi bi-virus'></i>
-                            Malades
+                            Interventions
                         </Link>
 
                     </li>

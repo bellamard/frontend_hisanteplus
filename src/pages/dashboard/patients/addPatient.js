@@ -4,9 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import HeaderDash from '../../../components/header/headerDash';
 import Options from '../../../components/option';
-import PannelIdent from '../../../components/pannel/pannelIdent';
-import Item from '../../../components/items';
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import FormAdd from '../../../components/form';
 import axios from "axios";
 
 const AddPatients = () => {
@@ -30,11 +29,15 @@ const AddPatients = () => {
         };
         getMyProfil();
     },[]);
+    
     return (
         <div className='containerPannel'>
             <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />
             <div className='layout'>
-                {/* <PannelIdent patient={patients} /> */}
+                
+                <div>
+                    <FormAdd/>
+                </div>
             </div>
         </div>
     );

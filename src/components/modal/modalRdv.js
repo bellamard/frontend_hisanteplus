@@ -21,25 +21,25 @@ const ModalRdv = ({ showRdv, setShowRdv }) => {
 
     const Rdv = () => (
         <div className='myModal'>
-            <div className='boxModal'>
+            <div className='boxModal mb-3'>
                 <h3>PRENDRE RENDEZ VOUS</h3>
                 <div>
                     <form onSubmit={handleSubmit} action=''>
                         <div className='boxInput'>
-                            <label>Nom patient: </label>
-                            <input type='text' placeholder='entrer le nom du patient' onChange={(e) => setNames(e.target.value)} value={names} name='names' required />
+                            <label className='form-label'>Nom patient: </label>
+                            <input className='form-control' type='text' placeholder='le nom du patient' onChange={(e) => setNames(e.target.value)} value={names} name='names' required />
                         </div>
                         <div className='boxInput'>
-                            <label>code: </label>
-                            <input type='number' placeholder='entrer code du patient' value={code} onChange={(e) => setCode(e.target.value)} name='code' required />
+                            <label className='form-label'>code: </label>
+                            <input className='form-control' type='number' placeholder='le code du patient' value={code} onChange={(e) => setCode(e.target.value)} name='code' required />
                         </div>
                         <div className='boxInput'>
-                            <label>date : </label>
-                            <input type='date' placeholder='entrer date' value={date} onChange={(e) => setDate(e.target.value)} name='date' required />
+                            <label className='form-label'>date : </label>
+                            <input className='form-control' type='datetime-local' placeholder='entrer date' value={date} onChange={(e) => setDate(e.target.value)} name='date' required />
                         </div>
                         <div className='boxInput'>
-                            <label htmlFor='motif'>Motif:</label>
-                            <textarea name='motif' value={motif} onChange={(e) => { setMotif(e.target.value) }} />
+                            <label htmlFor='motif' className='form-label'>Motif:</label>
+                            <textarea className='form-control' name='motif' value={motif} onChange={(e) => { setMotif(e.target.value) }} />
                         </div>
 
                         <div className='boxInput'>

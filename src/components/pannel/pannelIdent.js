@@ -4,7 +4,7 @@ import Rdv from '../../components/modal/modalRdv';
 
 const PannelIdent = ({ patient }) => {
     const [showRdv, setShowRdv] = useState(false);
-    const { names, age, sex, blood, helecto } = patient;
+    const { names, phone, sex, blood, helecto } = patient;
     const viewModal = () => {
         setShowRdv(!showRdv);
     };
@@ -17,7 +17,7 @@ const PannelIdent = ({ patient }) => {
                     <div>
                         <h3>Nom: {names} </h3>
                         <div className='viewInfos'>
-                            <h4>Age:{age} | Sexe:{sex}</h4>
+                            <h4>Genre:{sex} | Phone:{phone}</h4>
                         </div>
                     </div>
                 </div>

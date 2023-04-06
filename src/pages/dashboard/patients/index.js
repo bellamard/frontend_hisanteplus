@@ -13,13 +13,16 @@ const Patients = () => {
     const [userName, setUserName] = useState('');
     const [patientTotal, setPatientTotal] = useState(0);
     const [patientValide, setPatientValide] = useState(0);
+    const [search, setSearch]= useState('');
     const history = useNavigate();
     const [patients, setPatients] = useState([]);
-    const baseUrl="https://backend.dbrtransfert.site/";
-    
+    const [meets, setMeets]= useState([]);
+    const baseUrl="http://localhost:5000/";
+     
+     
     
     useEffect(() => {
-        setPatientValide('*');
+        
         const getMyProfil = () => {
         const url = baseUrl+'medecins/me';
         const tokken = localStorage.getItem('tokken');
@@ -40,31 +43,65 @@ const Patients = () => {
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
-                const patients=res.data;
-                console.log(patients);
-                setPatients(patients);
-                setPatientTotal(patients.length);
+                const dataPatients=res.data;
+                setPatients(dataPatients);
+                setPatientTotal(dataPatients.length);
+                
+            })
+            .catch(err => {
+                console.log(err);
+                history('/login');
+            });
+        };
+
+        const getAllMeet = () => {
+        const url = baseUrl+'consultations';
+        const tokken = localStorage.getItem('tokken');
+        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
+            .then(res => {
+                const myMeets=res.data;               
+                setMeets(myMeets);
+                checkPatientId(myMeets);                
+                
+                
             })
             .catch(err => {
                 console.log(err);
                 history('/login');
 
             });
-        };
-        
+        };          
+
         getMyProfil(); 
         getAllPatient();
-    },[]);
+        getAllMeet();
+                
+    },[history]);
+
+    const checkPatientId=(Patients)=>{
+        const patientId= Patients.map((patient)=>patient.patientId);
+        const newSet= new Set(patientId);
+        console.log(newSet);
+        setPatientValide(newSet.size);
+    };    
+      
     
-    
-    const GetPatients = () => patients.map((patient, id) => (<Link className='LinkItem' key={id} to={`${patient.id}`}><Item  title={patient.nomPatient} subtitle={patient.phonePatient} etat={patient.adressPatient} /></Link>));
+    const GetPatients = () => {return patients.filter((patient) => {
+      if (search === "") {
+        return patient;
+      } else if (patient.nomPatient.toLowerCase().includes(search.toLowerCase())) {
+        return patient;
+      }
+      return null;
+    }).map((patient, id) => (<Link className='LinkItem' key={id} to={`${patient.id}`}><Item  title={patient.nomPatient} subtitle={patient.phonePatient} etat={patient.adressPatient} /></Link>));
+    };
    
 
     return (
         <div className='containerPannel'>
             <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />
             <div className='layout'>
-                <HeaderDash userName={userName} />
+                <HeaderDash userName={userName} search={search} mySearch={setSearch} />
                 <PannelPatient patientTotal={patientTotal} patientValide={patientValide} />
                 <GetPatients />
             </div>

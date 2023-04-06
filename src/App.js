@@ -6,6 +6,7 @@ import NotFound from "./pages/notFound";
 import Dashboard from './pages/dashboard';
 import Meets from './pages/dashboard/meets'
 import Patients from './pages/dashboard/patients';
+import AddPatients from "./pages/dashboard/patients/addPatient";
 import Patient from './pages/dashboard/patients/patient';
 import './App.css';
 import Footer from './components/footer';
@@ -22,7 +23,8 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} exact />
           <Route path="/dashboard/meets" element={<Meets />} />
           <Route path="/dashboard/patients" element={<Patients />} exact />
-          <Route path="/dashboard/patients/:id" element={<Patient />} />
+          <Route path="/dashboard/patients/add" element={<AddPatients />} exact />
+          <Route path="/dashboard/patients/:id" element={<Patient />} exact />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

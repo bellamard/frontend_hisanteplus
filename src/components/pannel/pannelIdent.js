@@ -7,7 +7,7 @@ const PannelIdent = ({ patient }) => {
     const { names, age, sex, blood, helecto } = patient;
     const viewModal = () => {
         setShowRdv(!showRdv);
-    }
+    };
     return (
         <div>
             <Rdv showRdv={showRdv} setShowRdv={setShowRdv} />

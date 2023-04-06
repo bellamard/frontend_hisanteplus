@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
-const HeaderDash = ({ userName, mySearch }) => {
+const HeaderDash = ({ userName, mySearch,  search}) => {
     const history = useNavigate();
-    const [search, setSearch] = useState('');
     const logOut = () => {
         localStorage.clear();
         return history('/login');       
     };
-    useEffect(() => {},[])
+    
     return (
         <div className="containerHeader">
             <div className="containerLogin">
                 <div className='boxSearch'>
                     <i class="bi bi-search"></i>
-                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder='Recherche...' />
+                    <input type="text" value={search} onChange={(e)=>mySearch(e.target.value)} placeholder='Recherche...' />
                 </div>
                 <div className='boxControl'>
 

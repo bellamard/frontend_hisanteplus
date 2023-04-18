@@ -531,3 +531,118 @@
         
     }
 }
+.boxConsultation{
+    display: inline-block;
+    justify-content: center;
+    border: #006188 solid 1px;
+    border-radius: 5px;
+    margin: 4px;
+    color: #ff9a9a;
+    width:24%; 
+    transition: all 0.8s ease-in-out;
+    .consultationId{
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 5px;
+        padding: 6px;
+        border-bottom: #006188 solid 2px;       
+        transition: all 0.8s ease-in-out;
+        .bi{
+            font-size: 5rem;
+            color: #5a2483;
+            margin-right: 4px;
+            transition: all 0.8s ease-in-out;
+        }
+        .boxTitle{
+            align-items: center;
+            font-family: 'gotham';
+            margin: 8px;
+            line-height: 1.5px;
+            transition: all 0.8s ease-in-out;
+            h3{
+                font-size: 1.4rem;
+                color: #1c1a19;
+                transition: all 0.8s ease-in-out;
+
+            }
+            span{
+                font-size: 0.8rem;
+                font-weight: 100;
+                color: #5a2483;
+                transition: all 0.8s ease-in-out;
+            }
+
+        }
+        
+    }
+    .boxState{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        .bi{
+            font-size: 0.8rem;
+            color: #5a2483;
+
+    transition: all 0.8s ease-in-out;
+        }
+        .mod{
+            color: #006188;
+            font-size: 0.6rem;
+            padding-right: 2px;
+
+    transition: all 0.8s ease-in-out;
+        }
+        .sup{
+            color: #f10800;
+            font-size: 0.6rem;
+
+    transition: all 0.8s ease-in-out;
+        }
+    }
+    &:hover{
+        background-color: #5a2483;
+        border-color: white;
+        .consultationId{
+            background-color: #b8b7b8;
+            border-color: white;
+            .bi{
+                color: white;
+            }
+            .boxTitle{
+                background-color: #b8b7b836;
+                h3{
+                
+                    color: white;
+                }
+                span{
+                
+                    color: white;
+                }
+
+            }
+        }
+        .boxState{
+             .bi{
+            
+            color: white;
+        }
+        .mod{
+            color: white;
+        }
+        .sup{
+            color: #ececec;
+        }
+            
+        }
+    }
+}
+.bw{
+    width:32.5%;
+}
+.boxMeets{
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}

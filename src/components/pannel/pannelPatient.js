@@ -14,7 +14,7 @@ const PannelPatient = ({ patientTotal, patientValide, ajouter }) => {
                     <CardAdd title='Ajouter' numberTotal={patientTotal} numberValide={patientValide} icons="bi bi-person-fill-add"/>
                 </Link> 
                 <CardDiag title='Mes Patients' numberTotal={patientTotal} numberValide={patientValide} icons="bi bi-person-rolodex" card="card cardColorbluesky" />
-                <Card title='Patients' numberTotal={patientTotal} numberValide={patientValide} icons="bi bi-people-fill" card="card cardColorgreen" />
+                <Card title='Patients' numberTotal={patientTotal} numberValide="*" icons="bi bi-people-fill" card="card cardColorgreen" />
             </div>
             <hr />
 

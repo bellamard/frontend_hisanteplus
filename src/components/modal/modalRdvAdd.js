@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-const ModalRdv = ({ showRdv, setShowRdv, code }) => {
-
+const ModalRdv = ({ showRdv, setShowRdv, meet }) => {
+    const {id, type, dateConsultation,patient}=meet;
+    
+    console.log(patient);
     const history = useNavigate();
-    const [dataRdv, setDataRdv]=useState({code:code, date:new Date(), motif:""});
+    const [dataRdv, setDataRdv]=useState({code:id, date:dateConsultation, motif: type});
     const [messageError, setMessageError] = useState('');
     const baseUrl="https://backend.dbrtransfert.site/";
+    
 
     const handleSubmit = (event) => {
          
@@ -25,13 +28,13 @@ const ModalRdv = ({ showRdv, setShowRdv, code }) => {
             return setMessageError("date n'est pas correcte");
         }
         event.preventDefault(); 
-        const url = baseUrl+'consultations/new';
+        const url = baseUrl+'consultations/'+id+'/edit';
         const {code, date, motif}=dataRdv;
         const tokken = localStorage.getItem('tokken');
-        axios.post(url,{patientId:code, typeConsultation: motif, dateConsultation:date},{ headers: { 'Authorization': 'Bearer ' + tokken } })
+        axios.put(url,{patientId:code, typeConsultation: motif, dateConsultation:date},{ headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
                cancel();
-                history(`/dashboard/patients/${code}`);
+                history(`/dashboard/meets`);
             })
             .catch(err => {
                 console.log(err);
@@ -47,7 +50,9 @@ const ModalRdv = ({ showRdv, setShowRdv, code }) => {
     const Rdv = () => (
         <div className='myModal'>
             <div className='boxModal mb-3'>
-                <h3>PRENDRE RENDEZ VOUS</h3>
+                <h2>MODIFIER RENDEZ VOUS</h2>
+                <h3>PATIENT:{patient.nomPatient} </h3>
+                <h3>Fiche: {id} </h3>
                 <div>
                     <form onSubmit={handleSubmit} >                      
                         

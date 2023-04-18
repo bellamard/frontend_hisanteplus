@@ -10,7 +10,7 @@ import axios from "axios";
 
 const AddPatients = () => {
     const [userName, setUserName] = useState('inconnue');
-    const baseUrl="http://localhost:5000/";
+    const baseUrl="https://backend.dbrtransfert.site/";
     const history = useNavigate();
     useEffect(() => {
         const getMyProfil = () => {

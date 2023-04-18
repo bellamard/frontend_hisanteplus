@@ -489,4 +489,109 @@
   margin-right: 4px;
 }
 
+.boxConsultation {
+  display: inline-block;
+  justify-content: center;
+  border: #006188 solid 1px;
+  border-radius: 5px;
+  margin: 4px;
+  color: #ff9a9a;
+  width: 24%;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .consultationId {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  padding: 6px;
+  border-bottom: #006188 solid 2px;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .consultationId .bi {
+  font-size: 5rem;
+  color: #5a2483;
+  margin-right: 4px;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .consultationId .boxTitle {
+  align-items: center;
+  font-family: "gotham";
+  margin: 8px;
+  line-height: 1.5px;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .consultationId .boxTitle h3 {
+  font-size: 1.4rem;
+  color: #1c1a19;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .consultationId .boxTitle span {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #5a2483;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .boxState {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.boxConsultation .boxState .bi {
+  font-size: 0.8rem;
+  color: #5a2483;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .boxState .mod {
+  color: #006188;
+  font-size: 0.6rem;
+  padding-right: 2px;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation .boxState .sup {
+  color: #f10800;
+  font-size: 0.6rem;
+  transition: all 0.8s ease-in-out;
+}
+.boxConsultation:hover {
+  background-color: #5a2483;
+  border-color: white;
+}
+.boxConsultation:hover .consultationId {
+  background-color: #b8b7b8;
+  border-color: white;
+}
+.boxConsultation:hover .consultationId .bi {
+  color: white;
+}
+.boxConsultation:hover .consultationId .boxTitle {
+  background-color: rgba(184, 183, 184, 0.2117647059);
+}
+.boxConsultation:hover .consultationId .boxTitle h3 {
+  color: white;
+}
+.boxConsultation:hover .consultationId .boxTitle span {
+  color: white;
+}
+.boxConsultation:hover .boxState .bi {
+  color: white;
+}
+.boxConsultation:hover .boxState .mod {
+  color: white;
+}
+.boxConsultation:hover .boxState .sup {
+  color: #ececec;
+}
+
+.bw {
+  width: 32.5%;
+}
+
+.boxMeets {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
 /*# sourceMappingURL=Style.css.map */

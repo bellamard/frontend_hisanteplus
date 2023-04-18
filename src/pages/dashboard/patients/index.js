@@ -17,7 +17,7 @@ const Patients = () => {
     const history = useNavigate();
     const [patients, setPatients] = useState([]);
     const [meets, setMeets]= useState([]);
-    const baseUrl="http://localhost:5000/";
+    const baseUrl="https://backend.dbrtransfert.site/";
      
      
     
@@ -93,7 +93,7 @@ const Patients = () => {
         return patient;
       }
       return null;
-    }).map((patient, id) => (<Link className='LinkItem' key={id} to={`${patient.id}`}><Item  title={patient.nomPatient} subtitle={patient.phonePatient} etat={patient.adressPatient} /></Link>));
+    }).map((patient, id) => (<Link className='LinkItem' key={id} to={`/dashboard/patients/${patient.id}`}><Item  title={patient.nomPatient} subtitle={patient.phonePatient} etat={patient.adressPatient} /></Link>));
     };
    
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const FormAdd = () => {
 
     const history = useNavigate();
-    const baseUrl="http://localhost:5000/";
+    const baseUrl="https://backend.dbrtransfert.site/";
     const [dataPatient,setDataPatient]=useState({
         name:"",
         phone:"",
@@ -20,9 +20,9 @@ const FormAdd = () => {
     const [showRdv, setShowRdv] = useState(false);
    
     const [errorMessage, setErrorMessage] = useState('');
-    const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
-    const EMAIL_REGEX =
-  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const PASSWORD_REGEX = /^(?=.*\d).{4,32}$/;
+    const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     const handleSubmit=()=>{
             if (dataPatient.name == null || dataPatient.name === '' || dataPatient.name.length <= 0) {
                 return setErrorMessage(`Nom n'est pas remplir `)
@@ -30,10 +30,10 @@ const FormAdd = () => {
             if (dataPatient.phone == null || dataPatient.phone === '' || dataPatient.phone.length < 9) {
                 return setErrorMessage(`Phone n'est pas bien remplir `)
             }
-            if (dataPatient.password == null || dataPatient.password === '' || dataPatient.password.length <= 7 || !PASSWORD_REGEX.test(dataPatient.password)) {
-                return setErrorMessage(`Mot de passe n'est pas bien remplir `)
+            if (dataPatient.password == null || dataPatient.password === '' || dataPatient.password.length <6 || !PASSWORD_REGEX.test(dataPatient.password)) {
+                return setErrorMessage(`Mot de passe n'est pas bien remplir `);
             }
-            if (dataPatient.confirm == null || dataPatient.confirm === '' || dataPatient.confirm.length <=7|| !PASSWORD_REGEX.test(dataPatient.confirm)) {
+            if (dataPatient.confirm == null || dataPatient.confirm === '' || dataPatient.confirm.length <6|| !PASSWORD_REGEX.test(dataPatient.confirm)) {
                 return setErrorMessage(`Confirmation n'est pas bien remplir `);
             }
             if (dataPatient.confirm !== dataPatient.password) {
@@ -45,10 +45,10 @@ const FormAdd = () => {
             if (dataPatient.address == null || dataPatient.address === '' || dataPatient.address.length < 3) {
                 return setErrorMessage(`l'adresse n'est pas bien remplir `)
             }
-            if (dataPatient.mail == null || dataPatient.mail === '' ||  EMAIL_REGEX.test(dataPatient.mail)) {
+            if (dataPatient.mail == null || dataPatient.mail === '' ||  !EMAIL_REGEX.test(dataPatient.mail)) {
                 return setErrorMessage(`l'adresse e-mail n'est pas bien remplir `);
             }
-            const url=baseUrl+'';
+            const url=baseUrl+'patients/registre';
             const {name, phone, password, sexe, address,mail}=dataPatient;
             axios.post(url,{nom_patient:name, phone_patient:phone, motpasse_patient:password, adresse_patient:address, sexe_patient:sexe, mail_patient:mail}).then((res)=>history('/dashboard/patients')).catch((error)=>{
                 return setErrorMessage(error);

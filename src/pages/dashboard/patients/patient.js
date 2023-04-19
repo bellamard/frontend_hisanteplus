@@ -6,6 +6,9 @@ import HeaderDash from '../../../components/header/headerDash';
 import Options from '../../../components/option';
 import PannelIdent from '../../../components/pannel/pannelIdent';
 import Item from '../../../components/items';
+import Rdv from '../../../components/modal/modalRdvAdd';
+import Del from '../../../components/modal/modalRdvDel';
+import Loading from '../../../components/load';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -18,7 +21,21 @@ const Patients = ({}) => {
     const [myMeetings, setMyMeetings]= useState([]);
     const [sick, setSick]= useState([]);
     const [search, setSearch]= useState('');
+    const [showRdv, setShowRdv] = useState(false);
+    const [showDel, setShowDel] = useState(false);
+    const [viewDate, setViewDate]= useState(new Date());
+    const [viewMotif, setViewMotif]= useState('');
+    const [data, setData]= useState({});
     const baseUrl="https://backend.dbrtransfert.site/";
+    
+    const viewModal = (meet) => {
+        setData(meet);
+        setShowRdv(!showRdv);
+    };
+    const viewModalDel = (meet) => {
+        setData(meet);
+        setShowDel(!showDel);
+    };
     
     const history = useNavigate();
    
@@ -114,8 +131,8 @@ const Patients = ({}) => {
                 <div className='boxState'>
                     {meet.valider?(<i className='bi bi-calendar-check-fill'>Annuler</i>):(<i className='bi bi-calendar-x-fill'>En cours</i>)}
                     <div>
-                        <i className='mod bi bi-pencil-square'>Modifier</i>
-                        <i className='sup bi bi-file-x-fill'>Supprimer</i>
+                        <i className='mod bi bi-pencil-square' onClick={()=>viewModal(meet)}>Modifier</i>
+                        <i className='sup bi bi-file-x-fill' onClick={()=>viewModalDel(meet)}>Supprimer</i>
                     </div>
                 </div>
             </div>))
@@ -156,10 +173,25 @@ const Patients = ({}) => {
     
     }
 
+    const Pagination =()=>(
+        <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+    <li className="page-item"><a className="page-link" href="#">1</a></li>
+    <li className="page-item"><a className="page-link" href="#">2</a></li>
+    <li className="page-item"><a className="page-link" href="#">3</a></li>
+    <li className="page-item"><a className="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+    )
+
     
 
     return (
         <div className='containerPannel'>
+            <Rdv showRdv={showRdv} setShowRdv={setShowRdv} meet={data} myDate={viewDate} myMotif={viewMotif}/>
+            <Del showRdv={showDel} setShowRdv={setShowDel} meet={data} myDate={viewDate} myMotif={viewMotif}/>
+            <Loading/>
             <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />
             <div className='layout'>
                 <HeaderDash userName={userName} search={search} mySearch={setSearch} />
@@ -167,12 +199,15 @@ const Patients = ({}) => {
                 <h3>Mes Consultation</h3>
                 <div className='boxMeets'>                  
                     <GetViewMyMeet/>
+                    
                 </div>
+                <Pagination/>
                 <hr/>
                 <h3>Consultations</h3>
                 <div className='boxMeets'>                  
-                    <GetViewMeet/>
+                    <GetViewMeet/>                    
                 </div>
+                <Pagination/>
 
             </div>
         </div>

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HeaderDash from '../../../components/header/headerDash';
 import Options from '../../../components/option';
 import Rdv from '../../../components/modal/modalRdvAdd';
+import Del from '../../../components/modal/modalRdvDel';
 import axios from "axios";
 
 const Meets = () => {
@@ -24,7 +25,8 @@ const Meets = () => {
         setData(meet);
         setShowRdv(!showRdv);
     };
-    const viewModalDel = (idDel) => {
+    const viewModalDel = (meet) => {
+        setData(meet);
         setShowDel(!showDel);
     };
 
@@ -90,7 +92,7 @@ const Meets = () => {
                     {meet.valider?(<i className='bi bi-calendar-check-fill'>Annuler</i>):(<i className='bi bi-calendar-x-fill'>En cours</i>)}
                     <div>
                         <i className='mod bi bi-pencil-square' onClick={()=>viewModal(meet)}>Modifier</i>
-                        <i className='sup bi bi-file-x-fill'>Supprimer</i>
+                        <i className='sup bi bi-file-x-fill' onClick={()=>viewModalDel(meet)}>Supprimer</i>
                     </div>
                 </div>
             </div>))
@@ -103,6 +105,7 @@ const Meets = () => {
     return (
         <div className='containerPannel'>
             <Rdv showRdv={showRdv} setShowRdv={setShowRdv} meet={data} myDate={viewDate} myMotif={viewMotif}/>
+            <Del showRdv={showDel} setShowRdv={setShowDel} meet={data} myDate={viewDate} myMotif={viewMotif}/>
             <Options activePatient='Links' activeMeet='Links active' activeSick='Links' />
             <div className='layout'>
                 <HeaderDash userName={userName} search={search} mySearch={setSearch} />

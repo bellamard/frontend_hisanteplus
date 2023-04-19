@@ -17,7 +17,19 @@ const Patients = () => {
     const history = useNavigate();
     const [patients, setPatients] = useState([]);
     const [meets, setMeets]= useState([]);
+    const [showRdv, setShowRdv] = useState(false);
+    const [showDel, setShowDel] = useState(false);
+    const [data, setData]= useState({});
+    const [load, setLoad] = useState(false);
     const baseUrl="https://backend.dbrtransfert.site/";
+
+     const viewModal = (meet) => {
+        setData(meet);
+        setShowRdv(!showRdv);
+    };
+    const viewModalDel = (idDel) => {
+        setShowDel(!showDel);
+    };
      
      
     
@@ -95,6 +107,17 @@ const Patients = () => {
       return null;
     }).map((patient, id) => (<Link className='LinkItem' key={id} to={`/dashboard/patients/${patient.id}`}><Item  title={patient.nomPatient} subtitle={patient.phonePatient} etat={patient.adressPatient} /></Link>));
     };
+    const Pagination =()=>(
+        <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+    <li className="page-item"><a className="page-link" href="#">1</a></li>
+    <li className="page-item"><a className="page-link" href="#">2</a></li>
+    <li className="page-item"><a className="page-link" href="#">3</a></li>
+    <li className="page-item"><a className="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+    )
    
 
     return (
@@ -104,6 +127,7 @@ const Patients = () => {
                 <HeaderDash userName={userName} search={search} mySearch={setSearch} />
                 <PannelPatient patientTotal={patientTotal} patientValide={patientValide} />
                 <GetPatients />
+                <Pagination/>
             </div>
         </div>
     );

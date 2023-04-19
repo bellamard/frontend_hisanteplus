@@ -6,6 +6,7 @@ import HeaderDash from '../../components/header/headerDash';
 import Pannel from '../../components/pannel';
 import PannelCharts from '../../components/pannel/pannelCharts';
 import Options from '../../components/option';
+import Loading from '../../components/load';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -29,8 +30,13 @@ const Dashboard = () => {
     const [indSickStat, setIndSickStat] = useState([]);
     const [indMeetStat, setIndMeetStat] = useState([]);
     const [indPatientStat, setIndPatientStat] = useState([]);
+    const [showLoad, setShowLoad] = useState(false);
+    const [load, setLoad] = useState(true);
     const history = useNavigate();
     const baseUrl="https://backend.dbrtransfert.site/";
+    
+    
+
     useEffect(() => { 
         setIndMeetStat([5, 6, 4, 12, 7, 6, 0, 1, 4, 9, 3, 1]);
         setIndSickStat([12, 1, 5, 6, 2, 19, 10, 11, 3, 9, 5, 1]);
@@ -114,14 +120,19 @@ const Dashboard = () => {
             });
     };
 
-    return (
-        <div className='containerPannel'>
-            <Options activePatient='Links' activeMeet='Links' activeSick='Links' />
-            <div className='layout'>
+    const Layout =()=>(
+        <div className='layout'>
                 <HeaderDash userName={userName} />
                 <Pannel patientTotal={patientTotal} patientValide={patientValide} meetTotal={meetTotal} meetValider={meetValider} sickTotal={sickTotal} sickValider={sickValider} />
                 <PannelCharts sickTitle={sickTitle} meetTitle={meetTitle} patientTitle={patientTitle} sickStat={sickStat} meetStat={meetStat} patientStat={patientStat} indSickTitle={indSickTitle} indMeetTitle={indMeetTitle} indPatientTitle={indPatientTitle} indSickStat={indSickStat} indMeetStat={indMeetStat} indPatientStat={indPatientStat} />
             </div>
+    );
+
+    return (
+        <div className='containerPannel'>
+            <Options activePatient='Links' activeMeet='Links' activeSick='Links' />
+            
+            {load ? (<Loading />) : (<Layout />)}
         </div>
     );
 };

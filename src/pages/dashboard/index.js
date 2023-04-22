@@ -30,7 +30,6 @@ const Dashboard = () => {
     const [indSickStat, setIndSickStat] = useState([]);
     const [indMeetStat, setIndMeetStat] = useState([]);
     const [indPatientStat, setIndPatientStat] = useState([]);
-    const [showLoad, setShowLoad] = useState(false);
     const [load, setLoad] = useState(true);
     const history = useNavigate();
     const baseUrl="https://backend.dbrtransfert.site/";
@@ -76,44 +75,53 @@ const Dashboard = () => {
         };    
         
     const getAllPatient = () => {
+        setLoad(true);
         const url = baseUrl+'patients/all';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
+                setLoad(false);
                 const patients=res.data;
                 setPatientTotal(patients.length);
             })
             .catch(err => {
                 console.log(err);
-                history('/login');
+                // history('/login');
 
             })
     };
     const getAllMeet = () => {
+        setLoad(true);
         const url = baseUrl+'consultations';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
+                setLoad(false);
                 const meets=res.data;
                 setMeetTotal(meets.length);
             })
             .catch(err => {
+                setLoad(false); 
                 console.log(err);
                 history('/login');
 
             });
     };
     const getAllSick = () => {
+        setLoad(true);
         const tokken = localStorage.getItem('tokken');
         const id= localStorage.getItem('id');
         const url = baseUrl+'interventions/';
         
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
+
+                setLoad(false);
                 const Sick=res.data;
                 setSickTotal(Sick.length);
             })
             .catch(err => {
+                setLoad(false); 
                 console.log(err);
                 history('/login');
 

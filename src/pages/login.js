@@ -19,7 +19,7 @@ const Login = () => {
     const [load, setLoad] = useState(false);
 
     useEffect(() => {
-        setMessage("La tempérance et le travail sont les meilleurs médecins de l'homme.\n\nLa médecine, c'est ingrat. Quand on se fait honorer par les riches, on a l'air d'un larbin, par les pauvres on a tout du voleur.\n \nLes meilleurs médecins du monde sont : Le Docteur Diète, le Docteur Tranquille et le Docteur Joyeux.");
+        setMessage("Notre plateforme digitale pour les professionnels de la santé offre un accès facile et sécurisé à une multitude d'outils et de ressources pour améliorer leur pratique clinique. Elle permet également de communiquer efficacement avec les patients et les autres professionnels de la santé, et de suivre les dossiers médicaux électroniques. Enfin, notre plateforme est personnalisable pour répondre aux besoins spécifiques de chaque praticien ou établissement de santé.");
     }, []);
     const history = useNavigate();
     const checkCount = () => {

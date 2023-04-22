@@ -6,6 +6,7 @@ import HeaderDash from '../../../components/header/headerDash';
 import Options from '../../../components/option';
 import PannelPatient from '../../../components/pannel/pannelPatient';
 import Item from '../../../components/items';
+import Loading from '../../../components/load';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -51,6 +52,7 @@ const Patients = () => {
         };
 
         const getAllPatient = () => {
+            setLoad(true);
         const url = baseUrl+'patients/all';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
@@ -58,26 +60,31 @@ const Patients = () => {
                 const dataPatients=res.data;
                 setPatients(dataPatients);
                 setPatientTotal(dataPatients.length);
+                setLoad(false); 
                 
             })
             .catch(err => {
+                setLoad(false); 
                 console.log(err);
                 history('/login');
             });
         };
 
         const getAllMeet = () => {
+            setLoad(true);
         const url = baseUrl+'consultations';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
                 const myMeets=res.data;               
                 setMeets(myMeets);
-                checkPatientId(myMeets);                
+                checkPatientId(myMeets);
+                setLoad(false);                
                 
                 
             })
             .catch(err => {
+                setLoad(false);
                 console.log(err);
                 history('/login');
 
@@ -118,17 +125,21 @@ const Patients = () => {
   </ul>
 </nav>
     )
-   
-
-    return (
-        <div className='containerPannel'>
-            <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />
-            <div className='layout'>
-                <HeaderDash userName={userName} search={search} mySearch={setSearch} />
+   const Layout =()=>(
+        <div className='layout'>
+            <HeaderDash userName={userName} search={search} mySearch={setSearch} />
                 <PannelPatient patientTotal={patientTotal} patientValide={patientValide} />
                 <GetPatients />
                 <Pagination/>
-            </div>
+        </div>
+    );
+
+    return (
+        <div className='containerPannel'>
+            <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />            
+                
+                {load ? (<Loading />) : (<Layout />)}
+            
         </div>
     );
 };

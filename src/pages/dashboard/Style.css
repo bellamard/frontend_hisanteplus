@@ -298,11 +298,12 @@
 .boxItem {
   border-radius: 5px;
   border-bottom: solid 0.3px rgba(90, 36, 131, 0.2470588235);
+  border-top: solid 0.3px rgba(90, 36, 131, 0.2470588235);
+  background-color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 5px;
-  padding: 8px;
+  padding: 14px;
   width: 100%;
   align-items: center;
 }
@@ -315,8 +316,9 @@
   width: 60px;
   height: 60px;
   pointer-events: none;
-  border-right: #1e1d3d solid 1px;
+  border: #1e1d3d solid 1px;
   border-radius: 50%;
+  padding-right: 24;
 }
 .boxItem .Iteminfos .ItemTitle {
   margin-left: 8px;
@@ -328,13 +330,17 @@
   text-decoration: none;
   color: #006188;
   font-size: 1.8em;
-  font-weight: bolder;
+  font-weight: lighter;
   margin: 0;
 }
 .boxItem .Iteminfos .ItemTitle span {
   font-size: 0.9em;
   font-weight: lighter;
   text-decoration: none;
+}
+.boxItem .Iteminfos .itemPa {
+  background-color: #1e1d3d;
+  color: #ffffff;
 }
 
 .LinkItem {
@@ -348,8 +354,6 @@
 .LinkItem:hover .boxItem {
   background-color: rgba(0, 97, 136, 0.0901960784);
   position: relative;
-  top: -5px;
-  left: -5px;
 }
 
 .boxPatientprofil {

@@ -12,7 +12,7 @@ import Loading from '../../../components/load';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Patients = ({}) => {
+const Meet = ({}) => {
     const {id}=useParams(); 
     const [userName, setUserName] = useState('inconnue');
     const [idMed, setIdMed]=useState(0);
@@ -20,7 +20,7 @@ const Patients = ({}) => {
     const [meetings, setMeetings]= useState([]);
     const [myMeetings, setMyMeetings]= useState([]);
     const [sick, setSick]= useState([]);
-    const [load, setLoad] = useState(false);
+    const [load, setLoad] = useState(true);
     const [search, setSearch]= useState('');
     const [showRdv, setShowRdv] = useState(false);
     const [showDel, setShowDel] = useState(false);
@@ -42,7 +42,7 @@ const Patients = ({}) => {
    
     
      useEffect(() => {
-        setLoad(true);
+        
         const getMyProfil = () => {
         const url = baseUrl+'medecins/me';
         const tokken = localStorage.getItem('tokken');
@@ -58,38 +58,23 @@ const Patients = ({}) => {
 
             });
         };
-        const getUserProfil = () => {
-        const url = baseUrl+'patients/'+id;
-        const tokken = localStorage.getItem('tokken');
-        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
-            .then(res => {
-                
-                return setPatients(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-
-            });
-        };
         const getMeeting=()=>{
-            
+            setLoad(true);
         const url = baseUrl+'consultations/'+id+'/all';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
-                const meets=res.data;                
+                const meets=res.data;
                 console.log(meets);
                 setMeetings(meets);
-                setLoad(false);
             })
             .catch(err => {
-                setLoad(false);
                 console.log(err);                
 
             });
         };
         const getMyMeeting=()=>{
-            
+            setLoad(true);
         const url = baseUrl+'consultations';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
@@ -99,15 +84,33 @@ const Patients = ({}) => {
                 setLoad(false);
             })
             .catch(err => {
-                console.log(err);             
-                setLoad(false);
+                console.log(err);
+                setLoad(false);               
+
             });
         };
+        const getAllSick = () => {
+            setLoad(true);
+        const tokken = localStorage.getItem('tokken');
+        const id= localStorage.getItem('id');
+        const url = baseUrl+'interventions/';
         
+        axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
+            .then(res => {
+                setLoad(false);
+                const Sick=res.data;
+                setSick(Sick);
+            })
+            .catch(err => {
+                setLoad(false);
+                console.log(err);
+
+            });
+         };
         getMyProfil();
         getMeeting();
         getMyMeeting();
-        getUserProfil();
+        getAllSick();
     },[]);
     
     const GetViewMyMeet=()=>{
@@ -179,21 +182,21 @@ const Patients = ({}) => {
 
     const Pagination =()=>(
         <nav aria-label="Page navigation example">
-            <ul className="pagination">
-                <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-                <li className="page-item"><a className="page-link" href="#">1</a></li>
-                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                <li className="page-item"><a className="page-link" href="#">3</a></li>
-                <li className="page-item"><a className="page-link" href="#">Next</a></li>
-            </ul>
-        </nav>
-        );
+  <ul className="pagination">
+    <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+    <li className="page-item"><a className="page-link" href="#">1</a></li>
+    <li className="page-item"><a className="page-link" href="#">2</a></li>
+    <li className="page-item"><a className="page-link" href="#">3</a></li>
+    <li className="page-item"><a className="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+    )
 
         const Layout=()=>(
             <div className='layout'>
                 <HeaderDash userName={userName} search={search} mySearch={setSearch} />
                 <PannelIdent patient={patients} />
-                <h3>Mes Consultations</h3>
+                <h3>Mes Consultation</h3>
                 <div className='boxMeets'>                  
                     <GetViewMyMeet/>
                     
@@ -213,12 +216,11 @@ const Patients = ({}) => {
         <div className='containerPannel'>
             <Rdv showRdv={showRdv} setShowRdv={setShowRdv} meet={data} myDate={viewDate} myMotif={viewMotif}/>
             <Del showRdv={showDel} setShowRdv={setShowDel} meet={data} myDate={viewDate} myMotif={viewMotif}/>
-            
-            <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />
-                   
+            <Loading/>
+            <Options activePatient='Links active' activeMeet='Links' activeSick='Links' />            
             {load ? (<Loading />) : (<Layout />)}
         </div>
     );
 };
 
-export default Patients;
+export default Meet;

@@ -4,7 +4,7 @@ import Rdv from '../../components/modal/modalRdv';
 
 const PannelIdent = ({ patient }) => {
     const [showRdv, setShowRdv] = useState(false);
-    const { id, names, phone, sex, blood, helecto } = patient;
+    const { id, nomPatient, phonePatient, sexePatient, helecto, blood} = patient;
     const viewModal = () => {
         setShowRdv(!showRdv);
     };
@@ -32,11 +32,11 @@ const PannelIdent = ({ patient }) => {
             <Rdv showRdv={showRdv} setShowRdv={setShowRdv} code={id} />
             <div className='boxCard'>
                 <div className='boxPatientImage'>
-                    <img src={logo} className="imgUser" alt={names} />
+                    <img src="https://www.kindpng.com/picc/m/376-3768467_transparent-healthcare-icon-png-patient-info-icon-png.png" className="imgUser" alt={nomPatient} />
                     <div>
-                        <h3>Nom: {names} </h3>
+                        <h3>Nom: {nomPatient} </h3>
                         <div className='viewInfos'>
-                            <h4>Genre:{sex} | Phone:{phone}</h4>
+                            <h4>Genre:{sexePatient} | Phone:{phonePatient}</h4>
                         </div>
                     </div>
                 </div>

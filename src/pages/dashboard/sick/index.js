@@ -10,7 +10,7 @@ import Del from '../../../components/modal/modalRdvDel';
 import Loading from '../../../components/load';
 import axios from "axios";
 
-const Meets = () => {
+const Sick = () => {
     const [userName, setUserName] = useState('inconnue');
     const [search, setSearch]= useState('');
     const [myMeetings, setMyMeetings]= useState([]);
@@ -18,8 +18,9 @@ const Meets = () => {
     const [showDel, setShowDel] = useState(false);
     const [data, setData]= useState({});
     const [viewDate, setViewDate]= useState(new Date());
-    const [viewMotif, setViewMotif]= useState('');    
-    const [load, setLoad] = useState(false);    
+    const [viewMotif, setViewMotif]= useState('');
+    
+    const [load, setLoad] = useState(true);    
     const history = useNavigate();
     const baseUrl="https://backend.dbrtransfert.site/";
 
@@ -49,16 +50,18 @@ const Meets = () => {
         };
 
         const getMeeting=()=>{
+            setLoad(true);
         const url = baseUrl+'consultations';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
             .then(res => {
+                setLoad(false);
                 const meets=res.data;                
                 setMyMeetings(meets);
 
             })
             .catch(err => {
-                
+                setLoad(false);
                 console.log(err);               
 
             });
@@ -105,7 +108,7 @@ const Meets = () => {
 
     const Layout=()=>(<div className='layout'>
                 <HeaderDash userName={userName} search={search} mySearch={setSearch} />
-                <h3>Mes Consultation</h3>
+                <h3>Mes Prises en charges</h3>
                 <div className='boxMeets'>                  
                     <GetViewMyMeet/>
                 </div>
@@ -115,11 +118,11 @@ const Meets = () => {
         <div className='containerPannel'>
             <Rdv showRdv={showRdv} setShowRdv={setShowRdv} meet={data} myDate={viewDate} myMotif={viewMotif}/>
             <Del showRdv={showDel} setShowRdv={setShowDel} meet={data} myDate={viewDate} myMotif={viewMotif}/>
-            <Options activePatient='Links' activeMeet='Links active' activeSick='Links' />
+            <Options activePatient='Links' activeMeet='Links' activeSick='Links active' />
             
             {load ? (<Loading />) : (<Layout />)}
         </div>
     );
 };
 
-export default Meets;
+export default Sick;

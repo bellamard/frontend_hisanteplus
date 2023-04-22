@@ -1,11 +1,10 @@
 import React from 'react';
-import logo from '../../logo.png';
 
 const Item = ({ title, subtitle, etat, myImage }) => {
     return (
         <div className='boxItem'>
             <div className='Iteminfos'>
-                <img src={logo} className="imgUser" alt={title} />
+                <img src="https://www.kindpng.com/picc/m/376-3768467_transparent-healthcare-icon-png-patient-info-icon-png.png" className="imgUser" alt={title} />
                 <div className='ItemTitle'>
                     <h3>
                         {title}
@@ -16,8 +15,8 @@ const Item = ({ title, subtitle, etat, myImage }) => {
                 </div>
             </div>
 
-            <div>
-                {etat}
+            <div className='itemPa'>                
+                    {etat}              
             </div>
 
 

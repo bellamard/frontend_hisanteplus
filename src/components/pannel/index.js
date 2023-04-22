@@ -1,11 +1,10 @@
 import React from 'react';
 import Card from '../card';
-import {  useNavigate } from "react-router-dom";
 
 
 
 const Pannel = ({ patientTotal, patientValide, meetTotal, meetValider, sickTotal, sickValider }) => {
-    const history = useNavigate();
+    
     return (
         <div>
             <div className='boxCard'> 

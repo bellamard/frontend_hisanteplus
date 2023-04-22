@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import Card from '../card';
 import CardAdd from '../card/cardAdd';
 import CardDiag from '../card/cardDiag';
-import { Link,useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const PannelPatient = ({ patientTotal, patientValide, ajouter }) => {
-    const history = useNavigate();
-    const LinkAdd=()=>history('add');
+    
     return (
         <div>
             

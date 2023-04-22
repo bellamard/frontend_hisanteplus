@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from '../../logo.png'
 
 const Options = ({ activePatient, activeMeet, activeSick }) => {

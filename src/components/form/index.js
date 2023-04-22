@@ -1,5 +1,5 @@
 
-import React, {useEffect , useState} from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import ModalPatient from '../modal/modalPatient';
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,8 @@ const FormAdd = () => {
     const [showRdv, setShowRdv] = useState(false);
    
     const [errorMessage, setErrorMessage] = useState('');
-    const PASSWORD_REGEX = /^(?=.*\d).{4,32}$/;
-    const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const PASSWORD_REGEX = "^(?=.*\d).{4,32}$";
+    const EMAIL_REGEX = '^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
     const handleSubmit=()=>{
             if (dataPatient.name == null || dataPatient.name === '' || dataPatient.name.length <= 0) {

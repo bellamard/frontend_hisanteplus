@@ -47,19 +47,7 @@ const Dashboard = () => {
         setPatientValide('*');
         setMeetValider('*');
         setSickValider('*');
-        getMyProfil();
-        getAllPatient();
-        getAllMeet();
-        getAllSick();
-        setSickTitle("Interventions");
-        setMeetTitle('RDV');
-        setPatientTitle('Patients');
-        setIndSickTitle("Interventions");
-        setIndMeetTitle("RDV");
-        setIndPatientTitle("Patients");
-    }, []);
-    
-    const getMyProfil = () => {
+         const getMyProfil = () => {
         const url = baseUrl+'medecins/me';
         const tokken = localStorage.getItem('tokken');
         axios.get(url, { headers: { 'Authorization': 'Bearer ' + tokken } })
@@ -127,6 +115,19 @@ const Dashboard = () => {
 
             });
     };
+        getMyProfil();
+        getAllPatient();
+        getAllMeet();
+        getAllSick();
+        setSickTitle("Interventions");
+        setMeetTitle('RDV');
+        setPatientTitle('Patients');
+        setIndSickTitle("Interventions");
+        setIndMeetTitle("RDV");
+        setIndPatientTitle("Patients");
+    }, []);
+    
+   
 
     const Layout =()=>(
         <div className='layout'>

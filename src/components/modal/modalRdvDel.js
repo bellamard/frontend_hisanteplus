@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -8,10 +8,11 @@ const ModalDel = ({ showRdv, setShowRdv, meet }) => {
     
     console.log(patient);
     const history = useNavigate();
-    const [dataRdv, setDataRdv]=useState({code:id, date:dateConsultation, motif: type});
+    const [dataRdv, setDataRdv]=useState({code:'', date:'', motif: ''});
     const [messageError, setMessageError] = useState('');
     const baseUrl="https://backend.dbrtransfert.site/";
     
+    useEffect(() =>setDataRdv({...dataRdv, code:id, date:dateConsultation, motif:type}) ,[]);
 
     const handleSubmit = (event) => {
          
